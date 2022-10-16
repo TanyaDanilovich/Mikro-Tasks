@@ -1,9 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NewComponent from "./newComponent";
 
-type FilterType = "all" | "Dollars" | "RUBLS"
+export type FilterType = "all" | "Dollars" | "RUBLS"
+type currencyType = {
+    banknots: string
+    value: number
+    number: string
+}
 
+export type MoneysType = Array<currencyType>
 
 function App() {
     const [money, setMoney] = React.useState([
@@ -26,34 +32,13 @@ function App() {
     if (filter === "RUBLS") {
         currentMoney = money.filter(el => el.banknots === "RUBLS")
     }
-
     const onClickFilterHandler = (valName: FilterType) => {
         setFilter(valName)
-        console.log(filter)
     }
-
 
     return (
         <div className="App">
-            <ul>
-                {currentMoney.map((el, index) => {
-                    return <li key={index}>
-                        <span>{`${el.banknots} по ${el.value}`} </span>
-                    </li>
-                })}
-            </ul>
-            <button onClick={() => {
-                onClickFilterHandler("all")
-            }}>all
-            </button>
-            <button onClick={() => {
-                onClickFilterHandler("Dollars")
-            }}>Dollars
-            </button>
-            <button onClick={() => {
-                onClickFilterHandler("RUBLS")
-            }}>RUBLS
-            </button>
+            <NewComponent currentMoney={currentMoney} onClickFilterHandler={onClickFilterHandler}/>
         </div>
     );
 }
