@@ -9,13 +9,13 @@ type NewComponentPropsType = {
 const NewComponent = (props: NewComponentPropsType) => {
     return (
         <div>
-            <ul>
+            <ol>
                 {props.currentMoney.map((el, index) => {
                     return <li key={index}>
                         <span>{`${el.banknots} по ${el.value}`} </span>
                     </li>
                 })}
-            </ul>
+            </ol>
             <button onClick={() => {
                 props.onClickFilterHandler("all")
             }}>all
